@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!--  Tree view-->
+        <record id="announcement_announcement_tree_view" model="ir.ui.view">
+            <field name="name">announcement.announcement.tree.view</field>
+            <field name="model">announcement.announcement</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="general_announcement"/>
+                    <field name="title"/>
+                    <field name="description"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="announcement_type"/>
+                    <field name="employee_ids" widget='many2many_tags'/>
+                    <field name="department_ids" widget='many2many_tags'/>
+                    <field name="job_ids" widget='many2many_tags'/>
+                    <field name="requested_date"/>
+                    <field name="company_id"/>
+                    <field name="attachment_ids"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        form view-->
+        <record id="announcement_announcement_form_view" model="ir.ui.view">
+            <field name="name">announcement.announcement.form.view</field>
+            <field name="model">announcement.announcement</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="sent_approval" string="Sent For Approval" type="object"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}" class="oe_highlight"/>
+                        <button name="approved" string="Approved" type="object"
+                                attrs="{'invisible': [('state', '!=', 'waiting_for_approval')]}" class="oe_highlight"/>
+                        <button string="Send By Email" type="object" name="action_send_email"
+                                attrs="{'invisible': [('state', '!=', 'approved')]}"/>
+
+
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h4>Code No</h4>
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <div>
+                            <label for="general_announcement"/>
+                            <field name="general_announcement"/>
+                        </div>
+
+                        <group>
+                            <field name="title" required="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date" required="1"/>
+                                <field name="announcement_type" attrs="{'invisible': [('general_announcement', '!=', False)],
+                                'required': [('general_announcement', '=', False)]}"/>
+                                <field name="attachment_ids">
+                                    <tree editable="True">
+                                        <field name="name"/>
+                                        <field name="attachment"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group>
+                                <field name="end_date" required="1"/>
+                                <field name="employee_ids" widget='many2many_tags'
+                                       attrs="{'invisible': ['|', ('announcement_type', '!=', 'employee'),
+                                                             ('general_announcement', '!=', False)]}"/>
+                                <field name="department_ids" widget='many2many_tags'
+                                       attrs="{'invisible': ['|', ('announcement_type', '!=', 'department'),
+                                                             ('general_announcement', '!=', False)]}"/>
+                                <field name="job_ids" widget='many2many_tags'
+                                       attrs="{'invisible': ['|', ('announcement_type', '!=', 'job_position'),
+                                                             ('general_announcement', '!=', False)]}"/>
+                                <field name="requested_date" readonly="1"/>
+                                <field name="company_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Letter" name="letter">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--        action-->
+        <record id="announcement_announcement_action_view" model="ir.actions.act_window">
+            <field name="name">Announcement</field>
+            <field name="res_model">announcement.announcement</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--        main menu-->
+<!--        <menuitem id="announcement_announcement_main_menu" name="Announcements" sequence="1"-->
+<!--                  groups="hr_announcement.group_announcement_manager"/>-->
+<!--        <menuitem id="announcement_announcement_menu" name="Announcements"-->
+<!--                  action="announcement_announcement_action_view"-->
+<!--                  sequence="3" parent="announcement_announcement_main_menu"/>-->
+
+    </data>
+</odoo>

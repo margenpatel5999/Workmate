@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="0">
+    <record id="base.module_category_human_resources_recruitment" model="ir.module.category">
+        <field name="name">Hr Announcement</field>
+        <field name="description">Category For Salary</field>
+    </record>
+
+    <record id="group_announcement_employee" model="res.groups">
+        <field name="name">Employee</field>
+        <field name="category_id" ref="base.module_category_human_resources_recruitment"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_announcement_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="base.module_category_human_resources_recruitment"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+<!--    <record id="employees_announcement_rule_id" model="ir.rule">-->
+<!--        <field name="name">Employee Announcement</field>-->
+<!--        <field name="model_id" ref="model_hr_employee"/>-->
+<!--        <field name="domain_force">[('user_id', '=', user.id)]</field>-->
+<!--        <field name="groups" eval="[(4, ref('hr_announcement.group_announcement_employee'))]"/>-->
+<!--    </record>-->
+
+<!--    <record id="manager_announcement_rule_id" model="ir.rule">-->
+<!--        <field name="name">Manager</field>-->
+<!--        <field name="model_id" ref="model_hr_employee"/>-->
+<!--        <field name="domain_force">[(1,'=',1)]</field>-->
+<!--        <field name="groups" eval="[(4, ref('hr_announcement.group_announcement_manager'))]"/>-->
+<!--    </record>-->
+</odoo>

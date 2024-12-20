@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <menuitem
+            id="hr.menu_hr_root"
+            name="Human Resource" sequence="1" groups="hr_management.group_hr_management_no_menu"/>
+
+<!--    <menuitem-->
+<!--            id="employee_menu_root_discuss"-->
+<!--            name="Discuss"-->
+<!--            action="mail.action_discuss"-->
+<!--            groups="base.group_user"-->
+<!--            sequence="1"-->
+<!--            parent="hr.menu_hr_root"-->
+<!--    />-->
+
+    <menuitem
+                id="employee_menu_user"
+                name="Employees"
+                action="hr.open_view_employee_list_my"
+                parent="hr.menu_hr_root"
+                sequence="2"/>
+
+    <menuitem id="hr_management_attendance_main_menu" name="Attendances" parent="hr.menu_hr_root" sequence="3"/>
+
+    <menuitem id="check_in_out_menu" name="Check In / Check Out"
+              action="hr_attendance.hr_attendance_action_my_attendances"
+              parent="hr_management.hr_management_attendance_main_menu" sequence="1"/>
+
+    <menuitem id="employee_attendance_menu" name="Employee Attendances" action="hr_attendance.hr_attendance_action"
+              parent="hr_management.hr_management_attendance_main_menu" sequence="2"/>
+
+    <menuitem action="project.open_view_project_all_config" id="employee_projects_menu" name="Projects"
+              parent="hr.menu_hr_root" sequence="6"/>
+
+
+    <menuitem id="announcement_announcement_menus" name="Announcements"
+              action="hr_announcement.announcement_announcement_action_view"
+              sequence="5" parent="hr.menu_hr_root" groups="hr_announcement.group_announcement_manager"/>
+
+    <menuitem
+            id="employee_leave_menu_new_request"
+            name="Old Leaves"
+            parent="hr.menu_hr_root"
+            action="hr_holidays.hr_leave_action_new_request"
+            groups="hr_management.group_hr_management_no_menu"
+            sequence="9"/>
+
+     <menuitem
+                id="hr.menu_hr_department_kanban"
+                groups="-hr.group_hr_user,hr_management.group_hr_management_no_menu"/>
+
+    <!--   menus invisible-->
+    <menuitem
+            id="calendar.mail_menu_calendar"
+            name="Calendar"
+            action="calendar.action_calendar_event"
+            groups="-base.group_user,hr_management.group_hr_management_no_menu"/>
+
+
+    <menuitem
+            id="hr.menu_hr_employee"
+            action="hr.hr_employee_public_action"
+            parent="hr.menu_hr_root"
+            groups="hr_management.group_hr_management_no_menu"/>
+
+    <menuitem
+            id="hr.menu_config_plan"
+            parent="hr.menu_human_resources_configuration"
+            groups="-hr.group_hr_manager,hr_management.group_hr_management_no_menu"/>
+
+    <menuitem
+            id="hr.menu_config_plan_plan"
+            name="On/Offboarding Plans"
+            parent="hr.menu_config_plan"
+            groups="-hr.group_hr_user,hr_management.group_hr_management_no_menu"/>
+
+    <menuitem
+            id="hr.menu_view_hr_contract_type"
+            parent="hr.menu_config_recruitment"
+            groups="-hr.group_hr_user,hr_management.group_hr_management_no_menu"/>
+
+    <menuitem id="hr_attendance.menu_hr_attendance_kiosk_no_user_mode"
+              name="Kiosk Mode" parent="hr_attendance.menu_hr_attendance_root"
+              groups="-hr_attendance.group_hr_attendance_kiosk,hr_management.group_hr_management_no_menu"
+              action="hr_attendance.hr_attendance_action_kiosk_mode"/>
+
+    <menuitem id="hr_attendance.menu_hr_attendance_report" name="Reporting"
+              parent="hr_attendance.menu_hr_attendance_root"
+              groups="-hr_attendance.group_hr_attendance_user,hr_management.group_hr_management_no_menu"
+              action="hr_attendance.hr_attendance_report_action"/>
+
+    <menuitem id="hr_attendance.menu_hr_attendance_settings" name="Configuration"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="hr_attendance.action_hr_attendance_settings"
+              groups="-hr_attendance.group_hr_attendance_manager,hr_management.group_hr_management_no_menu"/>
+
+    <menuitem id="hr_attendance.menu_hr_attendance_root" name="Attendances" sequence="90"
+              groups="-hr_attendance.group_hr_attendance,-hr_attendance.group_hr_attendance_kiosk,hr_management.group_hr_management_no_menu"/>
+
+    <menuitem id="hr_timesheet.timesheet_menu_root"
+              groups="-hr_timesheet.group_hr_timesheet_user,hr_management.group_hr_management_no_menu"/>
+
+    <menuitem id="project.menu_main_pm"
+              groups="-project.group_project_manager,-project.group_project_user,hr_management.group_hr_management_no_menu"/>
+
+    <menuitem
+            id="mail.menu_root_discuss"
+            groups="-base.group_user,hr_management.group_hr_management_no_menu"
+    />
+
+    <!--    for hide leave main menu-->
+    <menuitem
+            id="hr_holidays.menu_hr_holidays_root"
+            groups="-base.group_user,hr_management.group_hr_management_no_menu"/>
+
+
+    <menuitem
+            id="hr.menu_hr_employee_payroll"
+            groups="-hr.group_hr_user,hr_management.group_hr_management_no_menu"/>
+
+
+    <menuitem
+            id="hr.hr_menu_hr_reports"
+            name="Reporting"
+            groups="hr_management.group_hr_management_no_menu"/>
+
+
+    <menuitem
+            id="hr.hr_employee_skill_report_menu"
+            name="Skills"
+            groups="hr_management.group_hr_management_no_menu"
+    />
+
+</odoo>

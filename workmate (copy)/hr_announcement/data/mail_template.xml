@@ -1,0 +1,25 @@
+<odoo>
+   <data>
+       <!--Email template -->
+       <record id="employee_email_template" model="mail.template">
+           <field name="name">Employees</field>
+           <field name="model_id" ref="hr_announcement.model_announcement_announcement"/>
+<!--           <field name="email_from">shubhpatel211099@gmail.com</field>-->
+<!--           <field name="email_to" >shubhpatel211099@gmail.com</field>-->
+           <field name="subject">Ref ${object.name or 'n/a' }</field>
+           <field name="report_template" ref="announcement_announcement_report"/>
+           <field name="report_name">${(object.name)}</field>
+           <field name="auto_delete" eval="True"/>
+           <field name="body_html" type="html">
+               <div class="note-editable panel-body" contenteditable="true" style="height: 180px;">
+               <p><b>Title</b>: ${object.title}</p>
+               <p>Start Date: ${object.start_date}</p>
+               <p>End Date: ${object.end_date}</p>
+               <p>Description: ${object.description}</p>
+           </div>
+           </field>
+       </record>
+   </data>
+</odoo>
+
+

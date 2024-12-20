@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="group_hr_management_no_menu" model="res.groups">
+        <field name="name">No Menu</field>
+    </record>
+
+    <record id="employee_rule_user" model="ir.rule">
+            <field name="name">employee.rule.user</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('hr_announcement.group_announcement_employee'))]"/>
+        </record>
+
+    <record id="employee_attendance_rule_users" model="ir.rule">
+            <field name="name">employee.attendance.rule.users</field>
+            <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('hr_announcement.group_announcement_employee'))]"/>
+        </record>
+</odoo>

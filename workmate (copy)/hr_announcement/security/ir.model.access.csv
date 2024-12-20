@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+announcement_announcement_employee,access.announcement.announcement,model_announcement_announcement,group_announcement_employee,1,0,0,0
+announcement_announcement_manager,access.announcement.announcement,model_announcement_announcement,group_announcement_manager,1,1,1,1
+announcement_document,access.announcement.document,model_announcement_document,,1,1,1,1
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Event Report -->
+        <record id="announcement_announcement_report" model="ir.actions.report">
+            <field name="name">Announcement</field>
+            <field name="model">announcement.announcement</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_announcement.announcement_announcement_report_tmplate</field>
+            <field name="report_file">hr_announcement.announcement_announcement_report_tmplate</field>
+            <field name="binding_model_id" ref="model_announcement_announcement"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <template id="announcement_announcement_report_tmplate">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="announcement_rec">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <!-- Title -->
+
+                            <div class="row mt32 mb32" id="informations">
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <!--                                    <strong>Announcement Title</strong>-->
+                                    <p class="m-0" t-field="announcement_rec.name"/>
+                                    <strong>General Announcement</strong>
+                                    <p class="m-0" t-field="announcement_rec.general_announcement"/>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row mt32 mb32" id="informations">
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <strong>Announcement Title</strong>
+                                    <p class="m-0" t-field="announcement_rec.title"/>
+                                </div>
+                            </div>
+                            <br/>
+
+
+                            <div class="row mt32 mb32" id="informations">
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <strong>Announcement Type</strong>
+                                    <p class="m-0" t-field="announcement_rec.announcement_type"/>
+                                </div>
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <t t-if="announcement_rec.department_ids">
+                                        <strong>Department</strong>
+                                        <p class="m-0" t-field="announcement_rec.department_ids"/>
+                                    </t>
+                                </div>
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <t t-if="announcement_rec.employee_ids">
+                                        <strong>Employee</strong>
+                                        <p class="m-0" t-field="announcement_rec.employee_ids"/>
+                                    </t>
+                                </div>
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <t t-if="announcement_rec.job_ids">
+                                        <strong>Job Position</strong>
+                                        <p class="m-0" t-field="announcement_rec.job_ids"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row mt32 mb32" id="informations">
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <strong>Start Date</strong>
+                                    <p class="m-0" t-field="announcement_rec.start_date"/>
+                                </div>
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <strong>End Date</strong>
+                                    <p class="m-0" t-field="announcement_rec.end_date"/>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row mt32 mb32" id="informations">
+                                <div class="col-auto col-3 mw-100 mb-2">
+                                    <strong>Company</strong>
+                                    <p class="m-0" t-field="announcement_rec.company_id"/>
+                                </div>
+                            </div>
+                            <br/>
+
+
+                        </div>
+                    </t>
+
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+employee_timesheet,access.employee.timesheet,model_employee_timesheet,,1,1,1,1
+access_leave_document,access.leave.document,model_leave_document,,1,1,1,1

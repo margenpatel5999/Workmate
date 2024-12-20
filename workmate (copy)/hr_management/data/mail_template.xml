@@ -1,0 +1,68 @@
+<odoo>
+   <data>
+       <!--Email template -->
+       <record id="manager_email_template" model="mail.template">
+           <field name="name">Employees</field>
+           <field name="model_id" ref="hr_management.model_employee_timesheet"/>
+           <field name="subject">Ref {{(object.week_name or 'n/a' )}}</field>
+           <field name="auto_delete" eval="True"/>
+           <field name="body_html" type="html">
+               <div class="note-editable panel-body" contenteditable="true" style="height: 180px;">
+               <p><b>Employee Name</b>: <t t-out="object.employee_id.name or ''"/></p>
+               <p>Start Date: <t t-out="object.start_date or ''"/></p>
+               <p>End Date: <t t-out="object.end_date or ''"/></p>
+               <p>Week Name: <t t-out="object.week_name or ''"/></p>
+                   <a t-attf-href="{{object.url}}" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                    Approved
+                </a>
+           </div>
+           </field>
+       </record>
+
+        <record id="leave_email_template" model="mail.template">
+           <field name="name">Leave Approve</field>
+           <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+           <field name="subject">Ref {{(object.employee_id.name or 'n/a' )}}</field>
+           <field name="auto_delete" eval="True"/>
+           <field name="body_html" type="html">
+               <div class="note-editable panel-body" contenteditable="true" style="height: 180px;">
+               <p><b>Employee Name</b>: <t t-out="object.employee_id.name or ''"/></p>
+               <p>Start From: <t t-out="object.date_from or ''"/></p>
+               <p>End To: <t t-out="object.date_to or ''"/></p>
+           </div>
+           </field>
+       </record>
+
+       <record id="leave_approve_email_template" model="mail.template">
+           <field name="name">Leave Approve</field>
+           <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+           <field name="subject">Ref {{(object.employee_id.name or 'n/a' )}}</field>
+           <field name="auto_delete" eval="True"/>
+           <field name="body_html" type="html">
+               <div class="note-editable panel-body" contenteditable="true" style="height: 180px;">
+               <p><b>Employee Name</b>: <t t-out="object.employee_id.name or ''"/></p>
+               <p>Start From: <t t-out="object.date_from or ''"/></p>
+               <p>End To: <t t-out="object.date_to or ''"/></p>
+                   <p>Your leave is approved</p>
+           </div>
+           </field>
+       </record>
+
+       <record id="leave_reject_email_template" model="mail.template">
+           <field name="name">Leave Approve</field>
+           <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+           <field name="subject">Ref {{(object.employee_id.name or 'n/a' )}}</field>
+           <field name="auto_delete" eval="True"/>
+           <field name="body_html" type="html">
+               <div class="note-editable panel-body" contenteditable="true" style="height: 180px;">
+               <p><b>Employee Name</b>: <t t-out="object.employee_id.name or ''"/></p>
+               <p>Start From: <t t-out="object.date_from or ''"/></p>
+               <p>End To: <t t-out="object.date_to or ''"/></p>
+                   <p>You leave is rejected</p>
+           </div>
+           </field>
+       </record>
+   </data>
+</odoo>
+
+

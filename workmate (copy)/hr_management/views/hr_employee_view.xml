@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Form view of Employee -->
+    <record id="hr_employee_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.view.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page[@name='public']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//form/sheet/notebook/page[@name='hr_settings']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//form/sheet/group/group/field[@name='mobile_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='personal_information']/group/group[1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='personal_information']/group/group[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//notebook/page[@name='personal_information']/group/group[3]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='place_of_birth']" position="replace"/>
+            <xpath expr="//field[@name='identification_id']" position="replace"/>
+            <xpath expr="//field[@name='passport_id']" position="replace"/>
+            <xpath expr="//field[@name='country_of_birth']" position="replace"/>
+
+            <xpath expr="//field[@name='country_id']" position="before">
+                <field name="address"/>
+            </xpath>
+
+            <xpath expr="//field[@name='country_id']" position="after">
+                <field name="state_id"/>
+                <field name="city_id"/>
+            </xpath>
+
+<!--            <xpath expr="//notebook/page[@name='personal_information']/group" position="inside">-->
+<!--                <group string="Marital Status">-->
+<!--                    <field name="marital"/>-->
+<!--                    <field name="spouse_complete_name"-->
+<!--                           attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"-->
+<!--                           groups="hr.group_hr_user"/>-->
+<!--                    <field name="spouse_birthdate"-->
+<!--                           attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"-->
+<!--                           groups="hr.group_hr_user"/>-->
+<!--                </group>-->
+<!--            </xpath>-->
+
+        </field>
+    </record>
+
+    <record id="view_hr_employee_form_smartbutton_inherited" model="ir.ui.view">
+        <field name="name">view.hr.employee.form.smartbutton.inherited</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form_smartbutton"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_related_contacts']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

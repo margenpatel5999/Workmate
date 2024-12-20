@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Form View for employee timesheet -->
+    <record id="hr_leave_form_view_inherit" model="ir.ui.view">
+        <field name="name">hr.leave.form.view.inherit</field>
+        <field name="model">hr.leave</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='state']" position="attributes">
+                <attribute name="groups">hr_management.group_hr_management_no_menu</attribute>
+            </xpath>
+            <xpath expr="//header/field[@name='state']" position="after">
+                <field name="state" invisible="1"/>
+            </xpath>
+            <xpath expr="//header/button[@name='action_confirm']" position="attributes">
+                <attribute name="groups">hr_management.group_hr_management_no_menu</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_approve']" position="attributes">
+                <attribute name="groups">hr_management.group_hr_management_no_menu</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_validate']" position="attributes">
+                <attribute name="groups">hr_management.group_hr_management_no_menu</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_refuse']" position="attributes">
+                <attribute name="groups">hr_management.group_hr_management_no_menu</attribute>
+            </xpath>
+            <xpath expr="//header/button[@name='action_draft']" position="attributes">
+                <attribute name="groups">hr_management.group_hr_management_no_menu</attribute>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button string="Send To Manager" class="btn-primary" type="object" name="send_to_manager"
+                            attrs="{'invisible':[('states', '!=', 'draft')]}"/>
+                    <button string="Approved" class="btn-primary" type="object" name="approved"
+                            attrs="{'invisible':[('states', '!=', 'waiting_for_approval')]}"/>
+                    <button string="Rejected" class="btn-primary" type="object" name="rejected"
+                            attrs="{'invisible':[('states', '!=', 'waiting_for_approval')]}"/>
+
+                    <field name="states" widget="statusbar"/>
+            </xpath>
+
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page name="pg_document" string="Attachment">
+                        <field name="leave_attachment_ids">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="attachment"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+
+        </field>
+    </record>
+
+
+<!--    <record id="hr_leave_view_form_manager_inherit" model="ir.ui.view">-->
+<!--        <field name="name">hr.leave.form.view.inherit</field>-->
+<!--        <field name="model">hr.leave</field>-->
+<!--        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form_manager"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            <xpath expr="//sheet/group" position="after">-->
+
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+
+    <!-- Action for hr Leave -->
+    <record id="action_hr_leave_inherit" model="ir.actions.act_window">
+        <field name="name">Leaves</field>
+        <field name="res_model">hr.leave</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="context">{'form_view_ref':'hr_holidays.hr_leave_view_form',
+            'tree_view_ref':'hr_holidays.hr_leave_view_tree_my'}
+        </field>
+    </record>
+
+    <!-- Menu for Leave -->
+    <menuitem id="hr_employee_leave_menu" name="Leave"
+              sequence="10" parent="hr.menu_hr_root" action="action_hr_leave_inherit"/>
+
+<!--    <menuitem id="hr_employee_leave_menu2" name="Leave2"-->
+<!--              sequence="10" parent="hr_employee_leave_menu" action="action_hr_leave_inherit"/>-->
+
+</odoo>
